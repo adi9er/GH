@@ -1,39 +1,61 @@
-package com.example.billsu.ghosthunter;
+package com.example.billsu.myapplication;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import android.os.Handler;
 
 
 public class MainActivity extends Activity {
+   /* private Handler frame = new Handler();
+    private static final int FRAME_RATE = 20;*/
+    ImageView Scared_Person;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      //  Handler h = new Handler();
+       // ((Button)findViewById(R.id.the_button)).setOnClickListener(this);
+        Scared_Person = (ImageView) findViewById(R.id.Scared_Person);
+        Scared_Person.setImageResource(
+                R.drawable.sprite);
+
+     /*   h.postDelayed(new Runnable(){
+            @Override
+                    public void run() {
+                        initGfx();
+            }
+        },1000); */
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+  /*  synchronized public void initGfx() {
+        ((GameBoard)findViewById(R.id.the_canvas)).resetStarField();
+        ((Button)findViewById(R.id.the_button)).setEnabled(true);
+        frame.removeCallbacks(frameUpdate);
+        frame.postDelayed(frameUpdate, FRAME_RATE);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    synchronized public void onClick(View v){
+        initGfx();
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private Runnable frameUpdate = new Runnable() {
+        @Override
+
+    synchronized public void run() {
+            frame.removeCallbacks(frameUpdate);
+            ((GameBoard)findViewById(R.id.the_canvas)).invalidate();
+            frame.postDelayed(frameUpdate,FRAME_RATE);
         }
-
-        return super.onOptionsItemSelected(item);
-    }
+    };*/
 }

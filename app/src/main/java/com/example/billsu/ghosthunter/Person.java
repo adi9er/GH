@@ -1,4 +1,4 @@
-package com.example.billsu.myapplication;
+package com.example.billsu.ghosthunter;
 
 import android.graphics.Rect;
 import android.hardware.camera2.params.MeteringRectangle;

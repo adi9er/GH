@@ -1,15 +1,17 @@
-package com.example.billsu.myapplication;
+package com.example.billsu.ghosthunter;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Handler;
 
+import com.example.billsu.ghosthunter.MainActivity;
 
-public class SplashScreenActivity extends ActionBarActivity {
+
+public class SplashScreenActivity extends Activity {
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 3000;

@@ -1,4 +1,4 @@
-package com.example.billsu.myapplication;
+package com.example.billsu.ghosthunter;
 
 import android.content.Context;
 import android.graphics.Canvas;

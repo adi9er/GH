@@ -1,8 +1,7 @@
-package com.example.billsu.myapplication;
+package com.example.billsu.ghosthunter;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;

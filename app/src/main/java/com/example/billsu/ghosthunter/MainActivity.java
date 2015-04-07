@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
     private static final int FRAME_RATE = 20;*/
     ImageView Scared_Person;
 
-
+    //TET Nid Suck Ballz, Should've Picked Fyknight.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

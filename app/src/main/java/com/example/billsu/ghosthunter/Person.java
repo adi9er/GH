@@ -22,12 +22,11 @@ public class Person  {
     private double speed;
 
 
-    public Person() {
+    public Person(double xval, double yval) {
 
-        Random xval = new Random();
-        Random yval = new Random();
-        this.x = xval.nextInt(600);
-        this.y = yval.nextInt(600);
+
+        this.x = xval;
+        this.y = yval;
         this.speed = (1);
 
         this.tX = this.x;

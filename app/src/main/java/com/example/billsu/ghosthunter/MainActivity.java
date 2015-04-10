@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
        // ((Button)findViewById(R.id.the_button)).setOnClickListener(this);
         Scared_Person = (ImageView) findViewById(R.id.Scared_Person);
         Scared_Person.setImageResource(
-                R.drawable.android_icon);
+                R.drawable.thresh);
         guy = new Person((double) Scared_Person.getX(), (double) Scared_Person.getY(), (double) Scared_Person.getWidth(), (double) Scared_Person.getHeight());
 
 

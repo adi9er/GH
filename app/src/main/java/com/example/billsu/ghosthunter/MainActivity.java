@@ -22,8 +22,7 @@ public class MainActivity extends Activity {
     ImageView Scared_Person;
     Person guy;
     ArrayList<Rect> obstacles;
-
-    //TET Nid Suck Ballz, Should've Picked Fyknight.
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

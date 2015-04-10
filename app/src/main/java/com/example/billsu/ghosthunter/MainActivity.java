@@ -2,7 +2,10 @@ package com.example.billsu.ghosthunter;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -10,11 +13,15 @@ import android.widget.ImageView;
 
 import android.os.Handler;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends Activity {
    /* private Handler frame = new Handler();
     private static final int FRAME_RATE = 20;*/
     ImageView Scared_Person;
+    Person guy;
+    ArrayList<Rect> obstacles;
 
     //TET Nid Suck Ballz, Should've Picked Fyknight.
     @Override
@@ -25,7 +32,9 @@ public class MainActivity extends Activity {
        // ((Button)findViewById(R.id.the_button)).setOnClickListener(this);
         Scared_Person = (ImageView) findViewById(R.id.Scared_Person);
         Scared_Person.setImageResource(
-                R.drawable.sprite);
+                R.drawable.android_icon);
+        guy = new Person((double) Scared_Person.getX(), (double) Scared_Person.getY(), (double) Scared_Person.getWidth(), (double) Scared_Person.getHeight());
+
 
      /*   h.postDelayed(new Runnable(){
             @Override
@@ -57,4 +66,36 @@ public class MainActivity extends Activity {
             frame.postDelayed(frameUpdate,FRAME_RATE);
         }
     };*/
+  public boolean onTouchEvent(MotionEvent event){
+      try {
+          Thread.sleep(50);
+      } catch (InterruptedException e){
+          e.printStackTrace();
+      }
+
+      if (event.getAction() == MotionEvent.ACTION_UP == false){
+          guy.setTarget((double) event.getX(), (double) event.getY());
+          guy.move();
+          Log.i("Guy:","Guy is now at " + guy.getX() + ",  " + guy.getY());
+
+//          for(Rect obs: obstacles){
+//              if(guy.getHitbox().intersects(guy.getHitbox(), obs)) {
+//                  guy.setTarget(-(double) event.getX(), -(double) event.getY());
+//                  guy.move();
+//
+//              }
+//
+//          }
+
+          Scared_Person.setX((float) guy.getX());
+          Scared_Person.setY((float) guy.getY());
+          Log.i("image:", "now at "+ Scared_Person.getX() +", " + Scared_Person.getY());
+;
+
+      }
+
+      return true;
+  }
+
+
 }

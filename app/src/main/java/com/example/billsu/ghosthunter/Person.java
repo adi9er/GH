@@ -20,24 +20,28 @@ public class Person  {
     private double tX;
     private double tY;
     private double speed;
+    private double width;
+    private double height;
 
 
-    public Person(double xval, double yval) {
+    public Person(double xval, double yval, double width, double height) {
 
 
         this.x = xval;
         this.y = yval;
-        this.speed = (1);
+        this.speed = (20);
+        this.width=width;
+        this.height=height;
 
         this.tX = this.x;
         this.tY = this.y;
-        this.hitbox = new Rect((int) (x), (int) (y), (int)x+30, (int)y+60);
+        this.hitbox = new Rect((int) (x), (int) (y), (int)x+(int)this.width, (int)(y+this.height));
 
 
 
     }
 
-    public void move(float time) {
+    public void move() {
         // calculate velocities
         double deltaX = this.tX - this.x;
         double deltaY = this.tY - this.y;
@@ -49,9 +53,9 @@ public class Person  {
             ySpeed = this.speed * (deltaY / distance);
         }
         // actually move now
-        this.x = this.x + xSpeed * time;
-        this.y = this.y + ySpeed * time;
-        this.hitbox = new Rect((int) (x), (int) (y), (int) x + 30, (int) y + 60);
+        this.x = this.x + xSpeed; //* time;
+        this.y = this.y + ySpeed; //* time;
+        this.hitbox = new Rect((int) (x), (int) (y), (int) (x + this.width), (int) y + (int)this.height);
         // System.out.println("Human Moved By:" + this.targetX + " " + this.x);
     }
 

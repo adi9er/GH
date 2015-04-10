@@ -23,6 +23,7 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.activity_splash_screen);
         new Handler().postDelayed(new Runnable() {
 
+
             /*
              * Showing splash screen with a timer. This will be useful when you
              * want to show case your app logo / company

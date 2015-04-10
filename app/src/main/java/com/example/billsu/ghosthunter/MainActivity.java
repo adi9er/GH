@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     ImageView Scared_Person;
     Person guy;
     ArrayList<Rect> obstacles;
-    //THIS IS THE TEST
+    //THIS IS THE TEST from steve
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

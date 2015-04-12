@@ -75,6 +75,8 @@ public class MainActivity extends Activity {
 
       if (event.getAction() == MotionEvent.ACTION_UP == false){
 
+          Log.i("Event happens at: " , "x = " +event.getX() + " y = "+ event.getY());
+
           //GUY MOVES HERE
 
           guy.setTarget((double) event.getX(), (double) event.getY());
@@ -93,8 +95,15 @@ public class MainActivity extends Activity {
           //IMAGE MATCHES GUY HERE
 
           Scared_Person.setX((float) guy.getX());
-          Scared_Person.setY((float) guy.getY());
+          Scared_Person.setY((float) guy.getY()-148);
+
+
+
+          int[] coords = new int[2];
+          Scared_Person.getLocationOnScreen(coords);
+
           Log.i("image:", "now at "+ Scared_Person.getX() +", " + Scared_Person.getY());
+          Log.i("image location now at: ", "x= "+coords[0]+ " y= "+coords[1]);
 ;
 
       }

@@ -1,6 +1,7 @@
 package com.example.billsu.ghosthunter;
 
 import android.graphics.Rect;
+import android.widget.ImageView;
 
 /**
  * Created by AlysonI on 4/10/2015.
@@ -13,30 +14,37 @@ import android.graphics.Rect;
  */
 public class Ghost {
 
-    private double x;
-    private double y;
-    private double tY; //targetY
-    private double tX; //targetX
-    private Rect hitbox;
-    private double width; //of the image
-    private double height; //of the image
+    protected double x;
+    protected double y;
+    protected double tY; //targetY
+    protected double tX; //targetX
+    protected Rect hitbox;
+    protected double width; //of the image
+    protected double height; //of the image
+    protected double speed;
+    protected ImageView Ghost_Image;
 
-    public Ghost( double startX, double startY, double h, double w){
+    public Ghost(double startX, double startY) {
         this.x = startX;
         this.y = startY;
-        this.height = h;
-        this.width = w;
-        this.hitbox = new Rect((int)this.x, (int)this.y, (int)(this.x + this.width),
-                (int)(this.y + this.height) );
+        Ghost_Image.setImageResource(
+                R.drawable.astroid);
+        this.updateImage();
+        this.height = Ghost_Image.getHeight();
+        this.width = Ghost_Image.getWidth();
+        this.hitbox = new Rect((int) this.x, (int) this.y, (int) (this.x + this.width),
+                (int) (this.y + this.height));
         this.tX = startX;
         this.tY = startY;
+
     }
+
     //basic getters & setters---------------------------------------------------
-    public double getX(){
+    public double getX() {
         return this.x;
     }
 
-    public void setX(double x){
+    public void setX(double x) {
         this.x = x;
     }
 
@@ -48,22 +56,23 @@ public class Ghost {
         this.tY = target;
     }
 
-    public void setTX(double target){
+    public void setTX(double target) {
         this.tX = target;
     }
-     //move method if we want the ghost to follow the girl-----------
-    public void stalk() {
-        // calculate velocities
-        double deltaX = this.tX - this.x;
-        double deltaY = this.tY - this.y;
-        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        double xSpeed = 0;
-        double ySpeed = 0;
-        if (distance > 0) {
-            // xSpeed = this.speed * (deltaX / distance);
-            // ySpeed = this.speed * (deltaY / distance);
-        }
-        // actually move now
-        this.x = this.x + xSpeed; //* time;
-        this.y = this.y + ySpeed; //* time;
-    }}
+
+    // I call this in move, just so the hitbox follows the image
+    public void updateHitbox() {
+        this.hitbox = new Rect((int) this.x, (int) this.y, (int) (this.x + this.width),
+                (int) (this.y + this.height));
+    }
+
+    //makes sure the pictures is following our guy
+    public void updateImage(){
+        this.Ghost_Image.setX((float) this.getX());
+        this.Ghost_Image.setY((float) this.getY());
+    }
+
+    // skeletal move method to make java happy
+     public void move() {
+     }
+}

@@ -34,7 +34,8 @@ public class MainActivity extends Activity {
         Scared_Person.setImageResource(
                 R.drawable.android_icon);
         guy = new Person((double) Scared_Person.getX(), (double) Scared_Person.getY(), (double) Scared_Person.getWidth(), (double) Scared_Person.getHeight());
-
+        Ghost g = new StalkingGhost(guy, 98, 100);
+        ghosts.add(g);
 
      /*   h.postDelayed(new Runnable(){
             @Override
@@ -76,6 +77,9 @@ public class MainActivity extends Activity {
       if (event.getAction() == MotionEvent.ACTION_UP == false){
           guy.setTarget((double) event.getX(), (double) event.getY());
           guy.move();
+          for ( Ghost g : ghosts ){
+              g.move();
+          }
           Log.i("Guy:","Guy is now at " + guy.getX() + ",  " + guy.getY());
 
 //          for(Rect obs: obstacles){

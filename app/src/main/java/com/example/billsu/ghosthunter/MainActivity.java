@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import android.os.Handler;
-
+import android.widget.RelativeLayout;
 import java.util.ArrayList;
+
+
 
 
 public class MainActivity extends Activity {
@@ -22,7 +24,8 @@ public class MainActivity extends Activity {
     ImageView Scared_Person;
     Person guy;
     ArrayList<Rect> obstacles;
-    //THIS IS THE TEST from steve1
+    RelativeLayout layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,14 @@ public class MainActivity extends Activity {
         Scared_Person.setImageResource(
                 R.drawable.android_icon);
         guy = new Person((double) Scared_Person.getX(), (double) Scared_Person.getY(), (double) Scared_Person.getWidth(), (double) Scared_Person.getHeight());
+
+        layout = (RelativeLayout) findViewById(R.id.layout);
+
+        ImageView ghost = new ImageView(this);
+        ghost.setImageResource(R.drawable.ufo);
+        ghost.setVisibility(View.VISIBLE);
+
+        layout.addView(ghost);
 
 
      /*   h.postDelayed(new Runnable(){
@@ -61,7 +72,7 @@ public class MainActivity extends Activity {
         @Override
 
     synchronized public void run() {
-            frame.removeCallbacks(frameUpdate);
+                frame.removeCallbacks(frameUpdate);
             ((GameBoard)findViewById(R.id.the_canvas)).invalidate();
             frame.postDelayed(frameUpdate,FRAME_RATE);
         }
@@ -76,7 +87,7 @@ public class MainActivity extends Activity {
       if (event.getAction() == MotionEvent.ACTION_UP == false){
           guy.setTarget((double) event.getX(), (double) event.getY());
           guy.move();
-          Log.i("Guy:","Guy is now at " + guy.getX() + ",  " + guy.getY());
+          Log.i("Guy:", "Guy is now at " + guy.getX() + ",  " + guy.getY());
 
 //          for(Rect obs: obstacles){
 //              if(guy.getHitbox().intersects(guy.getHitbox(), obs)) {

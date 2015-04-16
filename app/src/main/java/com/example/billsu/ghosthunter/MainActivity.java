@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ public class MainActivity extends Activity {
     ImageView Scared_Person;
     Person guy;
     ArrayList<Rect> obstacles;
+    ArrayList<Ghost> ghost;
     RelativeLayout layout;
 
 
@@ -31,28 +31,73 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Handler h = new Handler();
-       // ((Button)findViewById(R.id.the_button)).setOnClickListener(this);
+        //  Handler h = new Handler();
+        // ((Button)findViewById(R.id.the_button)).setOnClickListener(this);
+
         Scared_Person = (ImageView) findViewById(R.id.Scared_Person);
         Scared_Person.setImageResource(
                 R.drawable.android_icon);
         guy = new Person((double) Scared_Person.getX(), (double) Scared_Person.getY(), (double) Scared_Person.getWidth(), (double) Scared_Person.getHeight());
 
-        layout = (RelativeLayout) findViewById(R.id.layout);
 
+        layout = (RelativeLayout) findViewById(R.id.layout);
         ImageView ghost = new ImageView(this);
         ghost.setImageResource(R.drawable.ufo);
         ghost.setVisibility(View.VISIBLE);
+         layout.addView(ghost);
 
-        layout.addView(ghost);
+    }
+    @Override
+    public void onStart(){
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("run","yo we are in that run thing");
+            }
+        });
+    }
+
+  public boolean onTouchEvent(MotionEvent event){
+      try {
+          Thread.sleep(50); //keeps the thread from getting overwhelmed
+      } catch (InterruptedException e){
+          e.printStackTrace();
+      }
+
+      if (event.getAction() == MotionEvent.ACTION_UP == false){
+          guy.setTarget((double) event.getX(), (double) event.getY());
+          guy.move();
+          Log.i("Guy:", "Guy is now at " + guy.getX() + ",  " + guy.getY());
+
+//          for(Rect obs: obstacles){
+//              if(guy.getHitbox().intersects(guy.getHitbox(), obs)) {
+//                  guy.setTarget(-(double) event.getX(), -(double) event.getY());
+//                  guy.move();
+//              }
+//
+//          }
+
+          Scared_Person.setX((float) guy.getX());
+          Scared_Person.setY((float) guy.getY());
+          Log.i("image:", "now at "+ Scared_Person.getX() +", " + Scared_Person.getY());
+;
+
+      }
+
+      return true;
+  }
 
 
-     /*   h.postDelayed(new Runnable(){
+}
+/*
+
+h.postDelayed(new Runnable(){
             @Override
                     public void run() {
                         initGfx();
             }
-        },1000); */
+        },1000);
 
     }
 
@@ -77,36 +122,3 @@ public class MainActivity extends Activity {
             frame.postDelayed(frameUpdate,FRAME_RATE);
         }
     };*/
-  public boolean onTouchEvent(MotionEvent event){
-      try {
-          Thread.sleep(50);
-      } catch (InterruptedException e){
-          e.printStackTrace();
-      }
-
-      if (event.getAction() == MotionEvent.ACTION_UP == false){
-          guy.setTarget((double) event.getX(), (double) event.getY());
-          guy.move();
-          Log.i("Guy:", "Guy is now at " + guy.getX() + ",  " + guy.getY());
-
-//          for(Rect obs: obstacles){
-//              if(guy.getHitbox().intersects(guy.getHitbox(), obs)) {
-//                  guy.setTarget(-(double) event.getX(), -(double) event.getY());
-//                  guy.move();
-//
-//              }
-//
-//          }
-
-          Scared_Person.setX((float) guy.getX());
-          Scared_Person.setY((float) guy.getY());
-          Log.i("image:", "now at "+ Scared_Person.getX() +", " + Scared_Person.getY());
-;
-
-      }
-
-      return true;
-  }
-
-
-}
